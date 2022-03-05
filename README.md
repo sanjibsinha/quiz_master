@@ -1,4 +1,4 @@
-# I share my learning experience on Flutter, Dart, and Algorithm in - [https://sanjibsinha.com](https://sanjibsinha.com)
+# It's a different type of Quiz Apps that handle State with Stateful Widget, along with the Provider package
 
 There are lot of tips and tricks that might be useful for beginners. 
 
