@@ -50,15 +50,27 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void checkAnswer(bool userAnswered) {
     bool correctAnswer = answers[index];
+
     if (correctAnswer == userAnswered) {
-      check.add(const Text('Correct Answer'));
+      check.add(
+        const Text(
+          'You\'re Correct.',
+          style: TextStyle(
+            fontSize: 20.0,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      );
     } else {
-      check.add(const Text('Wrong Answer'));
-    }
-    if (index == answers.length) {
-      check.clear();
-      Alert(context: context, title: "RFLUTTER", desc: "Flutter is awesome.")
-          .show();
+      check.add(
+        const Text(
+          'You\'re Wrong',
+          style: TextStyle(
+            fontSize: 20.0,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      );
     }
   }
 
@@ -96,8 +108,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
               ),
-              getButton('Correct Answer', true),
-              getButton('Wrong Answer', false),
+              getButton('Above Equation is Correct', true),
+              getButton('Above Equation is Wrong', false),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
@@ -120,11 +132,21 @@ class _MyHomePageState extends State<MyHomePage> {
       child: ElevatedButton(
         onPressed: () {
           setState(() {
+            check.clear();
+
             checkAnswer(corerctOrWrong);
+
             index++;
 
-            if (index == questions.length) {
+            if (index >= questions.length) {
               index = 0;
+
+              Alert(
+                      context: context,
+                      title: "FirstQuiz Completed",
+                      desc: "Flutter and You, both are awesome.")
+                  .show();
+              check.clear();
             }
           });
         },
