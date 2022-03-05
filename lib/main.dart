@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 void main() {
   runApp(const MyApp());
@@ -36,7 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
     '78 + 6 = 84',
   ];
 
-  int questionIndex = 0;
+  int index = 0;
 
   List<bool> answers = [
     true,
@@ -47,37 +48,17 @@ class _MyHomePageState extends State<MyHomePage> {
 
   List<Text> check = [];
 
-  void checkAnswer() {
-    if (questionIndex == 0) {
-      if (answers[questionIndex] == true) {
-        check.add(const Text('Correct'));
-      } else {
-        check.add(const Text('Wrong'));
-      }
+  void checkAnswer(bool userAnswered) {
+    bool correctAnswer = answers[index];
+    if (correctAnswer == userAnswered) {
+      check.add(const Text('Correct Answer'));
+    } else {
+      check.add(const Text('Wrong Answer'));
     }
-    if (questionIndex == 1) {
-      if (answers[questionIndex] == false) {
-        check.add(const Text('Correct'));
-      } else {
-        check.add(const Text('Wrong'));
-      }
-    }
-    if (questionIndex == 2) {
-      if (answers[questionIndex] == false) {
-        check.add(const Text('Correct'));
-      } else {
-        check.add(const Text('Wrong'));
-      }
-    }
-    if (questionIndex == 3) {
-      if (answers[questionIndex] == true) {
-        check.add(const Text('Correct'));
-      } else {
-        check.add(const Text('Wrong'));
-      }
-    }
-    if (questionIndex > 3) {
+    if (index == answers.length) {
       check.clear();
+      Alert(context: context, title: "RFLUTTER", desc: "Flutter is awesome.")
+          .show();
     }
   }
 
@@ -91,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
           style: GoogleFonts.lacquer(
             textStyle: TextStyle(
               color: Colors.purple.shade600,
-              fontSize: 40.0,
+              fontSize: 20.0,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -100,14 +81,13 @@ class _MyHomePageState extends State<MyHomePage> {
       body: SafeArea(
         top: true,
         child: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
+          child: ListView(
             children: <Widget>[
               Container(
                 margin: const EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 5.0),
+                alignment: Alignment.center,
                 child: Text(
-                  questions[questionIndex],
+                  questions[index],
                   style: GoogleFonts.lalezar(
                     textStyle: const TextStyle(
                       fontSize: 30.0,
@@ -116,19 +96,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
               ),
-              getButton('True'),
-              getButton('False'),
-              /* Text(
-                'data',
-                style: GoogleFonts.ledger(
-                  textStyle: const TextStyle(
-                    fontSize: 30.0,
-                    fontWeight: FontWeight.bold,
-                  ),
+              getButton('Correct Answer', true),
+              getButton('Wrong Answer', false),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: check,
                 ),
-              ), */
-              Row(
-                children: check,
               )
             ],
           ),
@@ -138,16 +114,17 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Container getButton(String answer) {
+  Container getButton(String answer, bool corerctOrWrong) {
     return Container(
       padding: const EdgeInsets.all(5.0),
       child: ElevatedButton(
         onPressed: () {
           setState(() {
-            questionIndex++;
-            checkAnswer();
-            if (questionIndex > 3) {
-              questionIndex = 0;
+            checkAnswer(corerctOrWrong);
+            index++;
+
+            if (index == questions.length) {
+              index = 0;
             }
           });
         },
