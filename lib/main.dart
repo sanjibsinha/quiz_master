@@ -1,162 +1,150 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:quiz_master/model/mathematico.dart';
+//TODO: Step 2 - Import the rFlutter_Alert package here.
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'quiz_brain.dart';
 
-QuizMaster quizMaster = QuizMaster();
-void main() {
-  runApp(const Mathematico());
-}
+QuizBrain quizBrain = QuizBrain();
 
-class Mathematico extends StatelessWidget {
-  const Mathematico({Key? key}) : super(key: key);
+void main() => runApp(Quizzler());
 
-  // This widget is the root of your application.
+class Quizzler extends StatelessWidget {
+  const Quizzler({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'First Quiz',
-      theme: ThemeData(primarySwatch: Colors.orange),
-      home: const MathematicoHome(),
+      home: Scaffold(
+        backgroundColor: Colors.grey.shade900,
+        body: SafeArea(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10.0),
+            child: QuizPage(),
+          ),
+        ),
+      ),
     );
   }
 }
 
-class MathematicoHome extends StatefulWidget {
-  const MathematicoHome({Key? key}) : super(key: key);
+class QuizPage extends StatefulWidget {
+  const QuizPage({Key? key}) : super(key: key);
 
   @override
-  State<MathematicoHome> createState() => _MathematicoHomeState();
+  _QuizPageState createState() => _QuizPageState();
 }
 
-class _MathematicoHomeState extends State<MathematicoHome> {
-  List<Text> check = [];
+class _QuizPageState extends State<QuizPage> {
+  List<Icon> scoreKeeper = [];
+
+  void checkAnswer(bool userPickedAnswer) {
+    bool correctAnswer = quizBrain.getCorrectAnswer();
+
+    setState(() {
+      //TODO: Step 4 - Use IF/ELSE to check if we've reached the end of the quiz. If so,
+      //On the next line, you can also use if (quizBrain.isFinished()) {}, it does the same thing.
+      if (quizBrain.isFinished() == true) {
+        //TODO Step 4 Part A - show an alert using rFlutter_alert,
+
+        //This is the code for the basic alert from the docs for rFlutter Alert:
+        //Alert(context: context, title: "RFLUTTER", desc: "Flutter is awesome.").show();
+
+        //Modified for our purposes:
+        Alert(
+          context: context,
+          title: 'Finished!',
+          desc: 'You\'ve reached the end of the quiz.',
+        ).show();
+
+        //TODO Step 4 Part C - reset the questionNumber,
+        quizBrain.reset();
+
+        //TODO Step 4 Part D - empty out the scoreKeeper.
+        scoreKeeper = [];
+      }
+
+      //TODO: Step 6 - If we've not reached the end, ELSE do the answer checking steps below 👇
+      else {
+        if (userPickedAnswer == correctAnswer) {
+          scoreKeeper.add(Icon(
+            Icons.check,
+            color: Colors.green,
+          ));
+        } else {
+          scoreKeeper.add(Icon(
+            Icons.close,
+            color: Colors.red,
+          ));
+        }
+        quizBrain.nextQuestion();
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: Text(
-          'First Quiz',
-          style: GoogleFonts.lacquer(
-            textStyle: TextStyle(
-              color: Colors.purple.shade600,
-              fontSize: 20.0,
-              fontWeight: FontWeight.bold,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: <Widget>[
+        Expanded(
+          flex: 5,
+          child: Padding(
+            padding: EdgeInsets.all(10.0),
+            child: Center(
+              child: Text(
+                quizBrain.getQuestionText(),
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 25.0,
+                  color: Colors.white,
+                ),
+              ),
             ),
           ),
         ),
-      ),
-      body: SafeArea(
-        top: true,
-        child: Center(
-          child: ListView(
-            children: <Widget>[
-              Container(
-                margin: const EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 5.0),
-                alignment: Alignment.center,
-                child: Text(
-                  quizMaster.getQuestion(),
-                  style: GoogleFonts.lalezar(
-                    textStyle: const TextStyle(
-                      fontSize: 30.0,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+        Expanded(
+          child: Padding(
+            padding: EdgeInsets.all(15.0),
+            child: FlatButton(
+              textColor: Colors.white,
+              color: Colors.green,
+              child: Text(
+                'True',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20.0,
                 ),
               ),
-              Container(
-                padding: const EdgeInsets.all(5.0),
-                child: ElevatedButton(
-                  onPressed: () {
-                    bool correctAnswer = quizMaster.getAnswer();
-                    if (correctAnswer == true) {
-                      print('You are right.');
-                    } else {
-                      print('You are wrong.');
-                    }
-                    setState(() {
-                      quizMaster.nextQuestion();
-                      quizMaster.getIndex() + 1;
-                    });
-                  },
-                  child: Text(
-                    'Corerct',
-                    style: GoogleFonts.laila(
-                      textStyle: const TextStyle(
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.all(5.0),
-                child: ElevatedButton(
-                  onPressed: () {
-                    bool correctAnswer = quizMaster.getAnswer();
-                    if (correctAnswer == false) {
-                      print('You are right.');
-                    } else {
-                      print('You are wrong.');
-                    }
-                    setState(() {
-                      quizMaster.nextQuestion();
-
-                      quizMaster.getIndex() + 1;
-                    });
-                  },
-                  child: Text(
-                    'Wrong',
-                    style: GoogleFonts.laila(
-                      textStyle: const TextStyle(
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: check,
-                ),
-              )
-            ],
-          ),
-        ),
-      ),
-      // This trailing comma makes auto-formatting nicer for build methods.
-    );
-  }
-
-  Container getButton(String answer, bool corerctOrWrong) {
-    return Container(
-      padding: const EdgeInsets.all(5.0),
-      child: ElevatedButton(
-        onPressed: () {
-          setState(() {});
-        },
-        child: Text(
-          answer,
-          style: GoogleFonts.laila(
-            textStyle: const TextStyle(
-              fontSize: 20.0,
-              fontWeight: FontWeight.bold,
+              onPressed: () {
+                //The user picked true.
+                checkAnswer(true);
+              },
             ),
           ),
         ),
-      ),
+        Expanded(
+          child: Padding(
+            padding: EdgeInsets.all(15.0),
+            child: FlatButton(
+              color: Colors.red,
+              child: Text(
+                'False',
+                style: TextStyle(
+                  fontSize: 20.0,
+                  color: Colors.white,
+                ),
+              ),
+              onPressed: () {
+                //The user picked false.
+                checkAnswer(false);
+              },
+            ),
+          ),
+        ),
+        Row(
+          children: scoreKeeper,
+        )
+      ],
     );
   }
 }
-// as such nothing has been changed
-
-/**
- * 
- */
