@@ -8,7 +8,7 @@ class Mathematico {
 class QuizMaster {
   int _index = 0;
 
-  final List<Mathematico> _mathematico = [
+  final List<Mathematico> _quiz = [
     Mathematico('29 + 5 = 34', true),
     Mathematico('71 - 4 = 66', false),
     Mathematico('51 - 9 = 41', false),
@@ -16,20 +16,28 @@ class QuizMaster {
   ];
 
   void nextQuestion() {
-    if (_index == _mathematico.length - 1) {
+    if (_index == _quiz.length - 1) {
       _index++;
     }
   }
 
-  int getIndex() {
-    return _index;
-  }
-
   String getQuestion() {
-    return _mathematico[_index].question;
+    return _quiz[_index].question;
   }
 
   bool getAnswer() {
-    return _mathematico[_index].answer;
+    return _quiz[_index].answer;
+  }
+
+  bool isFinished() {
+    if (_index >= _quiz.length - 1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  void reset() {
+    _index = 0;
   }
 }
