@@ -132,20 +132,16 @@ class _MyHomePageState extends State<MyHomePage> {
       child: ElevatedButton(
         onPressed: () {
           setState(() {
-            check.clear();
-
             checkAnswer(corerctOrWrong);
-
             index++;
-
-            if (index >= questions.length) {
+            if (index >= answers.length) {
               index = 0;
 
               Alert(
-                      context: context,
-                      title: "FirstQuiz Completed",
-                      desc: "Flutter and You, both are awesome.")
-                  .show();
+                context: context,
+                title: "FirstQuiz Completed",
+                desc: "Flutter and You, both are awesome.",
+              ).show();
               check.clear();
             }
           });
@@ -163,3 +159,8 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+// as such nothing has been changed
+
+/**
+ * No working properly
+ */
