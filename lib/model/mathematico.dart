@@ -1,10 +1,12 @@
 class Mathematico {
-  String? question;
-  bool? answer;
+  String question;
+  bool answer;
 
   Mathematico(this.question, this.answer);
+}
 
-  final int _index = 0;
+class QuizMaster {
+  int _index = 0;
 
   final List<Mathematico> _mathematico = [
     Mathematico('29 + 5 = 34', true),
@@ -13,11 +15,21 @@ class Mathematico {
     Mathematico('78 + 6 = 84', true),
   ];
 
-  String? getQuestion() {
+  void nextQuestion() {
+    if (_index == _mathematico.length - 1) {
+      _index++;
+    }
+  }
+
+  int getIndex() {
+    return _index;
+  }
+
+  String getQuestion() {
     return _mathematico[_index].question;
   }
 
-  bool? getAnswer() {
+  bool getAnswer() {
     return _mathematico[_index].answer;
   }
 }
