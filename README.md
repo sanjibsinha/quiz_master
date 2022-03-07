@@ -1,4 +1,4 @@
-# It's a different type of Quiz Apps that handle State with Stateful Widget, along with the Provider package
+# Thera are different types of Quiz Apps that handle State with Stateful Widget, along with the Provider package
 
 There are lot of tips and tricks that might be useful for intermediate learners. 
 
