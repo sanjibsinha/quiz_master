@@ -18,7 +18,7 @@ class QuizApp extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.white,
           title: Text(
-            'First Mathematical Quiz',
+            'Mathematical Quiz',
             style: GoogleFonts.lacquer(
               textStyle: TextStyle(
                 color: Colors.purple.shade600,
@@ -115,40 +115,8 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
             ),
-            Container(
-              padding: const EdgeInsets.all(5.0),
-              child: ElevatedButton(
-                onPressed: () {
-                  checkAnswer(true);
-                },
-                child: Text(
-                  'Corerct',
-                  style: GoogleFonts.laila(
-                    textStyle: const TextStyle(
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              padding: const EdgeInsets.all(5.0),
-              child: ElevatedButton(
-                onPressed: () {
-                  checkAnswer(false);
-                },
-                child: Text(
-                  'Wrong',
-                  style: GoogleFonts.laila(
-                    textStyle: const TextStyle(
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            checkingAnswer('Correct', true),
+            checkingAnswer('Wrong', false),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
@@ -158,6 +126,26 @@ class _QuizPageState extends State<QuizPage> {
               ),
             )
           ],
+        ),
+      ),
+    );
+  }
+
+  Container checkingAnswer(String corerctOrWrong, bool trueOrFalse) {
+    return Container(
+      padding: const EdgeInsets.all(5.0),
+      child: ElevatedButton(
+        onPressed: () {
+          checkAnswer(trueOrFalse);
+        },
+        child: Text(
+          corerctOrWrong,
+          style: GoogleFonts.laila(
+            textStyle: const TextStyle(
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ),
       ),
     );
