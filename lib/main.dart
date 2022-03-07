@@ -15,12 +15,12 @@ class QuizApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.dark().copyWith(
-        primaryColor: const Color(0xFF0A0E21),
-        scaffoldBackgroundColor: const Color(0xFF0A0E21),
+        primaryColor: const Color(0xFF8B3817),
+        scaffoldBackgroundColor: const Color(0xFFC23C3C),
       ),
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: const Color(0xFF0A0E21),
+          backgroundColor: const Color(0xFF9D3A3A),
           title: Text(
             'Mathematical Quiz',
             style: GoogleFonts.lacquer(
@@ -142,7 +142,7 @@ class _QuizPageState extends State<QuizPage> {
     return Container(
       padding: const EdgeInsets.all(5.0),
       decoration: BoxDecoration(
-        color: const Color(0xFFCFD0D7),
+        color: const Color(0xFF9B5050),
         borderRadius: BorderRadius.circular(10.0),
       ),
       child: ElevatedButton(
