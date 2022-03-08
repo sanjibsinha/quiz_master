@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'model/quiz_master.dart';
+import 'model/constant.dart';
 
 QuizMaster quizMaster = QuizMaster();
 
@@ -15,12 +16,12 @@ class QuizApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.dark().copyWith(
-        primaryColor: const Color(0xFF409B25),
-        scaffoldBackgroundColor: const Color(0xFF2C6F2E),
+        primaryColor: primaryColor,
+        scaffoldBackgroundColor: scaffoldBackgroundColor,
       ),
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: const Color(0xFF81B165),
+          backgroundColor: appBarBackgroundColor,
           title: Text(
             'Mathematical Quiz',
             style: GoogleFonts.lacquer(
@@ -105,6 +106,7 @@ class _QuizPageState extends State<QuizPage> {
       top: true,
       child: Center(
         child: ListView(
+          //shrinkWrap: true,
           children: <Widget>[
             Container(
               margin: const EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 5.0),
@@ -124,14 +126,7 @@ class _QuizPageState extends State<QuizPage> {
               height: 10,
             ),
             checkingAnswer('Wrong', false),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: check,
-              ),
-            )
+            PaddingCustom(check: check),
           ],
         ),
       ),
@@ -142,12 +137,12 @@ class _QuizPageState extends State<QuizPage> {
     return Container(
       padding: const EdgeInsets.all(5.0),
       decoration: BoxDecoration(
-        color: const Color(0xFFC5DA28),
+        color: boxDecorationColor,
         borderRadius: BorderRadius.circular(10.0),
       ),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          primary: const Color(0xFF3C9415), // This
+          primary: elevatedButtonPrimaryColor,
         ),
         onPressed: () {
           checkAnswer(trueOrFalse);
@@ -165,3 +160,58 @@ class _QuizPageState extends State<QuizPage> {
     );
   }
 }
+
+class PaddingCustom extends StatelessWidget {
+  const PaddingCustom({
+    Key? key,
+    required this.check,
+  }) : super(key: key);
+
+  final List<Text> check;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: check,
+      ),
+    );
+  }
+}
+
+
+
+/**
+ void main() {
+  
+  AnImmutable anImmutable = AnImmutable(2); // setting a value which was final
+  
+  print(AnImmutable.mycConstant); 
+  
+  print(anImmutable.myFinal); // 2
+  
+  print(anImmutable.myDate);
+  
+  /**
+   A Constant String
+   2
+   2022-03-08 08:20:13.398 
+  */
+  
+}
+
+class AnImmutable {
+  static const String mycConstant = 'A Constant String';
+  final int myFinal; // at present it is not set so it will change later
+  // final String myFinalString;
+  
+  final myDate = DateTime.now();
+  
+  AnImmutable(this.myFinal);
+  
+  
+}
+ */
