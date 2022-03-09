@@ -10,7 +10,7 @@ class QuizApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Quiz App Home Page',
+      title: 'Playxis - Play + Lexis',
       theme: ThemeData.dark().copyWith(
         primaryColor: primaryColor,
         scaffoldBackgroundColor: scaffoldBackgroundColor,
