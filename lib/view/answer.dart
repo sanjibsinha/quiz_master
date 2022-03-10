@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import '../model/quiz_theme.dart';
 
 class Answer extends StatelessWidget {
   const Answer({
@@ -18,14 +18,12 @@ class Answer extends StatelessWidget {
       margin: const EdgeInsets.all(5.0),
       child: ElevatedButton(
         onPressed: pointToOnPress,
+        style: ElevatedButton.styleFrom(
+          primary: QuizTheme.elevatedButtonPrimaryColor,
+        ),
         child: Text(
           answer,
-          style: GoogleFonts.langar(
-            textStyle: const TextStyle(
-              fontSize: 20.0,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+          style: QuizTheme.answerStyle,
         ),
       ),
     );

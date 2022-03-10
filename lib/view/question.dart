@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../model/quiz_theme.dart';
 
 class Question extends StatelessWidget {
   const Question({Key? key, required this.questions, required this.index})
@@ -19,12 +20,7 @@ class Question extends StatelessWidget {
       child: Text(
         '${questions[index]['question']}',
         textAlign: TextAlign.center,
-        style: GoogleFonts.laila(
-          textStyle: const TextStyle(
-            fontSize: 30.0,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        style: QuizTheme.questionStyle,
       ),
     );
   }
