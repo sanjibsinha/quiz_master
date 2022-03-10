@@ -31,8 +31,9 @@ class _QuizPageState extends State<QuizPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           'Playxis - Play + Lexis',
+          style: QuizTheme.appbarStyle,
         ),
         backgroundColor: QuizTheme.appBarBackgroundColor,
       ),
@@ -45,6 +46,14 @@ class _QuizPageState extends State<QuizPage> {
             ...(questionList[index]['answer'] as List<String>).map((answer) {
               return Answer(answer: answer, pointToOnPress: increment);
             }).toList(),
+            Container(
+              padding: const EdgeInsets.all(5.0),
+              width: 250.0,
+              child: const Divider(
+                thickness: 5.0,
+                color: QuizTheme.dividerColor,
+              ),
+            )
           ],
         ),
       ),

@@ -31,4 +31,12 @@ class QuizTheme {
       fontWeight: FontWeight.bold,
     ),
   );
+
+  static TextStyle appbarStyle = GoogleFonts.salsa(
+    textStyle: const TextStyle(
+      color: QuizTheme.correctAnswerColor,
+      fontSize: 20.0,
+      fontWeight: FontWeight.bold,
+    ),
+  );
 }
