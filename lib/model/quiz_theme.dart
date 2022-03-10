@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+/// In a custom theme page we have described color and fonts
+/// We may add more custom theme-features later
+///
+
 class QuizTheme {
   static const Color primaryColor = Color(0xFF409B25);
   static const Color scaffoldBackgroundColor = Color(0xFF2C6F2E);
