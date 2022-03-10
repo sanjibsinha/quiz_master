@@ -42,7 +42,7 @@ class _QuizPageState extends State<QuizPage> {
         desc: 'We\'ve reached the end. Thanks for taking part. Meet you again.',
       ).show();
     }
-  }
+  } //need to think over it.
 
   @override
   Widget build(BuildContext context) {
