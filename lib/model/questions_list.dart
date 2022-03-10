@@ -1,7 +1,7 @@
 List<Map<String, Object>> questionList = [
   {
     'question': 'What is the synonym of Mendacity?',
-    'answers': [
+    'answer': [
       'truthfulness',
       'daring',
       'falsehood',
@@ -10,7 +10,7 @@ List<Map<String, Object>> questionList = [
   },
   {
     'question': 'What is the synonym of Culpable?',
-    'answers': [
+    'answer': [
       'gay',
       'guilty',
       'falsehood',
@@ -19,7 +19,7 @@ List<Map<String, Object>> questionList = [
   },
   {
     'question': 'What is the synonym of Rapacious?',
-    'answers': [
+    'answer': [
       'guilty',
       'daring',
       'falsehood',

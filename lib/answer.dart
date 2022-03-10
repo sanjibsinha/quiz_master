@@ -15,14 +15,14 @@ class Answer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      margin: const EdgeInsets.all(10.0),
+      margin: const EdgeInsets.all(5.0),
       child: ElevatedButton(
         onPressed: pointToOnPress,
         child: Text(
           answer,
           style: GoogleFonts.langar(
             textStyle: const TextStyle(
-              fontSize: 30.0,
+              fontSize: 20.0,
               fontWeight: FontWeight.bold,
             ),
           ),
