@@ -1,3 +1,6 @@
+/// In a custom theme page we have described color and fonts
+/// We may add more custom theme-features later
+///
 List<Map<String, Object>> questionList = [
   {
     'question': 'What is the synonym of Mendacity?',

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../model/quiz_theme.dart';
+
+/// In a custom theme page we have described color and fonts
+/// We may add more custom theme-features later
+///
 
 class Question extends StatelessWidget {
   const Question({Key? key, required this.questions, required this.index})

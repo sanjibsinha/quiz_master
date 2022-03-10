@@ -5,6 +5,10 @@ import '../model/quiz_theme.dart';
 import 'question.dart';
 import 'answer.dart';
 
+/// In a custom theme page we have described color and fonts
+/// We may add more custom theme-features later
+///
+
 class QuizPage extends StatefulWidget {
   const QuizPage({Key? key}) : super(key: key);
 

@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import '../model/quiz_theme.dart';
 import 'quiz_page.dart';
 
+/// In a custom theme page we have described color and fonts
+/// We may add more custom theme-features later
+///
+
 class QuizApp extends StatelessWidget {
   const QuizApp({Key? key}) : super(key: key);
 
