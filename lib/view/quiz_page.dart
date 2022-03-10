@@ -13,10 +13,13 @@ class QuizPage extends StatefulWidget {
   State<QuizPage> createState() => _QuizPageState();
 }
 
+/// nothing changed
+///
 class _QuizPageState extends State<QuizPage> {
+  int _index = 0;
   QuizMaster quiz = QuizMaster();
   String _correctAnswer = 'Choose your correct answer!';
-  int _index = 0;
+
   void increment() {
     setState(() {
       _index = _index + 1;
