@@ -13,13 +13,11 @@ class QuizPage extends StatefulWidget {
   State<QuizPage> createState() => _QuizPageState();
 }
 
-/// nothing changed
-///
 class _QuizPageState extends State<QuizPage> {
-  int _index = 0;
+  int _currentIndex = 0;
   QuizMaster quiz = QuizMaster();
   String _correctAnswer = 'Choose your correct answer!';
-
+  int _index = 0;
   void increment() {
     setState(() {
       _index = _index + 1;
@@ -42,17 +40,19 @@ class _QuizPageState extends State<QuizPage> {
         desc: 'We\'ve reached the end. Thanks for taking part. Meet you again.',
       ).show();
     }
-  } //need to think over it.
+  }
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
     return Scaffold(
       appBar: AppBar(
         title: Text(
           'Playxis - Play + Lexis',
           style: QuizTheme.appbarStyle,
         ),
-        backgroundColor: QuizTheme.appBarBackgroundColor,
+        backgroundColor: QuizTheme.shrinePink300,
       ),
       body: SafeArea(
         child: Column(
@@ -69,7 +69,7 @@ class _QuizPageState extends State<QuizPage> {
               width: 250.0,
               child: const Divider(
                 thickness: 5.0,
-                color: QuizTheme.dividerColor,
+                color: QuizTheme.shrinePink400,
               ),
             ),
             Container(
@@ -86,6 +86,39 @@ class _QuizPageState extends State<QuizPage> {
             ),
           ],
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        currentIndex: _currentIndex,
+        backgroundColor: colorScheme.surface,
+        selectedItemColor: colorScheme.onSurface,
+        unselectedItemColor: colorScheme.onSurface.withOpacity(.60),
+        selectedLabelStyle: textTheme.caption,
+        unselectedLabelStyle: textTheme.caption,
+        onTap: (value) {
+          // Respond to item press.
+          setState(
+            () => _currentIndex = value,
+          );
+        },
+        items: const [
+          BottomNavigationBarItem(
+            label: 'Favorites',
+            icon: Icon(Icons.favorite),
+          ),
+          BottomNavigationBarItem(
+            label: 'Music',
+            icon: Icon(Icons.music_note),
+          ),
+          BottomNavigationBarItem(
+            label: 'Places',
+            icon: Icon(Icons.location_on),
+          ),
+          BottomNavigationBarItem(
+            label: 'News',
+            icon: Icon(Icons.library_books),
+          ),
+        ],
       ),
     );
   }
