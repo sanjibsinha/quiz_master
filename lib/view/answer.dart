@@ -23,7 +23,7 @@ class Answer extends StatelessWidget {
       child: ElevatedButton(
         onPressed: pointToOnPress,
         style: ElevatedButton.styleFrom(
-          primary: QuizTheme.elevatedButtonPrimaryColor,
+          primary: QuizTheme.shrineBrown900,
         ),
         child: Text(
           answer,
