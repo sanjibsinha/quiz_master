@@ -18,7 +18,7 @@ class _QuizPageState extends State<QuizPage> {
   QuizMaster quiz = QuizMaster();
   String _correctAnswer = 'Choose your correct answer!';
   int _index = 0;
-  /* void increment() {
+  void increment() {
     setState(() {
       _index = _index + 1;
     });
@@ -42,7 +42,7 @@ class _QuizPageState extends State<QuizPage> {
         desc: 'We\'ve reached the end. Thanks for taking part. Meet you again.',
       ).show();
     }
-  } */
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,32 +68,7 @@ class _QuizPageState extends State<QuizPage> {
                 width: double.infinity,
                 margin: const EdgeInsets.all(5.0),
                 child: ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      _index = _index + 1;
-                    });
-                    if (_index == quiz.questionList.length + 1) {
-                      _index = 0;
-                    }
-                    if (_index == 0) {
-                      _correctAnswer = 'Choose your correct answer!';
-                    } else if (_index == 1) {
-                      _correctAnswer = 'Synonym of Mendacity was: Falsehood';
-                    } else if (_index == 2) {
-                      _correctAnswer = 'Synonym of Culpable was: Guilty';
-                    } else if (_index == 3) {
-                      _correctAnswer = 'Synonym of Rapacious was: Greedy';
-                    } else {
-                      _index = 0;
-                      _correctAnswer = 'Choose your correct answer!';
-                      Alert(
-                        context: context,
-                        title: 'Quiz Completed.',
-                        desc:
-                            'We\'ve reached the end. Thanks for taking part. Meet you again.',
-                      ).show();
-                    }
-                  },
+                  onPressed: () => increment(),
                   style: ElevatedButton.styleFrom(
                     primary: QuizTheme.shrineBrown900,
                   ),
