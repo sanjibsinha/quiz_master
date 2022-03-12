@@ -30,6 +30,15 @@ class QuizMaster {
         'greedy',
       ],
     },
+    {
+      'question': 'How to end this Quiz?',
+      'answer': [
+        'Press any Button.',
+        'Press any Button.',
+        'Press any Button.',
+        'Press any Button.',
+      ],
+    },
   ];
 }
 //need to think over it.
