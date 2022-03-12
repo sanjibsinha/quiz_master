@@ -31,6 +31,8 @@ class _QuizPageState extends State<QuizPage> {
       _correctAnswer = 'Synonym of Mendacity was: Falsehood';
     } else if (_index == 2) {
       _correctAnswer = 'Synonym of Culpable was: Guilty';
+    } else if (_index == 3) {
+      _correctAnswer = 'Synonym of Rapacious was: Greedy';
     } else {
       _index = 0;
       _correctAnswer = 'Choose your correct answer!';
