@@ -3,7 +3,6 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 
 import '../model/questions_list.dart';
 import '../model/quiz_theme.dart';
-import 'answer.dart';
 import 'question.dart';
 
 class QuizPage extends StatefulWidget {
@@ -15,9 +14,22 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   int _currentIndex = 0;
-  QuizMaster quiz = QuizMaster();
-  String _correctAnswer = 'Choose your correct answer!';
   int _index = 0;
+  QuizMaster quiz = QuizMaster();
+
+  String _correctAnswer = 'Choose your correct answer!';
+
+  List checkAnswer(List<String> element) {
+    List x = element;
+    if (element ==
+        (quiz.questionList[_index]['answer'] as List<String>)
+            .map((e) => e)
+            .toList()) {
+      return element;
+    }
+    return x;
+  }
+
   void increment() {
     setState(() {
       _index = _index + 1;
@@ -138,3 +150,8 @@ class _QuizPageState extends State<QuizPage> {
     );
   }
 }
+/**
+ * (quiz.questionList[_index]['answer'] as List<String>)
+            .map((e) => e)
+            .toList())
+ */
