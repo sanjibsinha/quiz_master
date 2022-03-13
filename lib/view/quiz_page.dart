@@ -19,15 +19,13 @@ class _QuizPageState extends State<QuizPage> {
 
   String _correctAnswer = 'Choose your correct answer!';
 
-  List checkAnswer(List<String> element) {
-    List x = element;
-    if (element ==
-        (quiz.questionList[_index]['answer'] as List<String>)
-            .map((e) => e)
-            .toList()) {
-      return element;
-    }
-    return x;
+  void checkAnswer(int i) {
+    List x = (quiz.questionList[i]['answer'] as List<String>)
+        .map((e) => () {
+              return e;
+            })
+        .toList();
+    print(x[i]);
   }
 
   void increment() {
@@ -41,10 +39,13 @@ class _QuizPageState extends State<QuizPage> {
       _correctAnswer = 'Choose your correct answer!';
     } else if (_index == 1) {
       _correctAnswer = 'Synonym of Mendacity was: Falsehood';
+      checkAnswer(2);
     } else if (_index == 2) {
       _correctAnswer = 'Synonym of Culpable was: Guilty';
+      checkAnswer(_index);
     } else if (_index == 3) {
       _correctAnswer = 'Synonym of Rapacious was: Greedy';
+      checkAnswer(_index);
     } else {
       _index = 0;
       _correctAnswer = 'Choose your correct answer!';
