@@ -1,0 +1,38 @@
+main(){
+  
+Calculator addition = Calculator(calculateNumber: calculate(10, 20, add));
+  
+  int adding = addition.calculateNumber!;
+  print('Addition of 10 and 20 is $adding'); 
+  // Addition of 10 and 20 is 30
+  
+  Calculator subtraction = Calculator(calculateNumber: calculate(10, 20, subtract));
+  
+  int subtracting = subtraction.calculateNumber!;
+  print('When you subtract 20 from 10, it is $subtracting'); 
+  // When you subtract 20 from 10, it is -10
+  
+  
+}
+
+
+class Calculator {
+  int? calculateNumber;
+  
+  Calculator({this.calculateNumber});
+}
+
+int calculate(int? x, int? y, Function? performCalculation){
+  return performCalculation!(x!, y!);
+}
+
+int add(int? x, int? y){
+  int result = x! + y!;
+  return result;
+}
+
+int subtract(int? x, int? y){
+  int result = x! - y!;
+  return result;
+}
+  
