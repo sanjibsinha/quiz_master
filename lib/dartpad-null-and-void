@@ -1,0 +1,44 @@
+main() {
+  
+  //var input = "sanjib"; 
+  //print(String.fromCharCodes(input.runes.toList().reversed));
+  
+void printElement(String element) {
+  
+  String? answer;
+  
+  if(element == 'Falsehood') {
+    answer = 'Correct';
+  } else if ((element == 'Guilty')) {
+    answer = 'Correct';
+  } else if ((element == 'Greedy')) {
+    answer = 'Correct';
+  } else {
+    answer = 'Wrong';
+  }
+  print(answer);  
+  
+}
+
+var list = ['Falsehood', 'Guilty', 'Greedy'];
+
+// Pass printElement as a parameter.
+list.forEach(printElement);
+  
+  void foo() {}
+  
+  var baz = foo;
+  
+  bar(baz) {
+    if (baz == null) {
+    print('true');
+  } 
+  }
+  
+  bar(baz);
+  
+ 
+
+
+ 
+}
