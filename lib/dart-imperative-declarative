@@ -1,0 +1,22 @@
+main() {
+  
+  List<int> myCollection = [1, 2, 3, 4, 5] ;
+  
+  List<int> results = [];
+  
+  for(var num in myCollection){
+    if (num % 2 != 0) {
+      results.add(num);
+    }
+  }
+  
+  print(results); // [1, 3, 5]
+  
+  List<int> myAnotherCollection = [1, 2, 3, 4, 5] ;
+  
+  var checkResults = myAnotherCollection.where( (int num) => num % 2 != 0);
+  
+  print(checkResults); // (1, 3, 5) 
+  
+  
+}
